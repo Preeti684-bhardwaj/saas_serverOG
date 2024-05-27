@@ -47,9 +47,13 @@ passport.use('jwt',strategy);
 
   
 // force: true will drop the table if it already exists
-//db.sequelize.sync({force: true}).then(() => {
-//  console.log('Drop and Resync with { force: true }');
-//}); 
+// db.sequelize()
+// .then(()=>{
+//   console.log("database connected successfully")
+// })
+db.sequelize.sync().then(() => {
+ console.log('Drop and Resync with { force: true }');
+}); 
 
 let router = require('./app/routers/index.js');
 
@@ -98,6 +102,7 @@ cluster(function(worker) {
 	app.use(passport.initialize());
 	
 	app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 	const server = app.listen(19901, function () {
   		let host = server.address().address
   		let port = server.address().port

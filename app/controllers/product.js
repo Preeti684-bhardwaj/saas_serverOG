@@ -13,6 +13,7 @@ exports.create = async (req, res) => {
         const product = await Product.create({
             name: req.body.name,
             description: req.body.description,
+            features:req.body.features,
             media: req.body.media
         });
         res.status(201).send(product);

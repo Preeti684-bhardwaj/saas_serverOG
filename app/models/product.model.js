@@ -1,3 +1,5 @@
+const { STRING } = require("sequelize");
+
 module.exports = (sequelize, Sequelize) => {
     const Product = sequelize.define('product', {
         id: {
@@ -7,6 +9,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         name: Sequelize.STRING,
         description: Sequelize.STRING,
+        features:Sequelize.ARRAY(STRING),
         media: Sequelize.JSON,
         createdAt: Sequelize.DATE,
         updatedAt: Sequelize.DATE
